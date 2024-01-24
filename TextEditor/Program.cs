@@ -14,7 +14,7 @@ namespace TextEditor
         {
             Console.Clear();
             Console.WriteLine("O que você deseja fazer? ");
-            Console.WriteLine(" (1) -> Abrir arquivo \n (2) -> Criar arquivo  \n (0) -> Sair");
+            Console.WriteLine(" (1) -> Abrir arquivo \n (2) -> Criar arquivo  \n (3) -> Deletar arquivo \n (0) -> Sair");
 
             short option = short.Parse(Console.ReadLine());
 
@@ -25,6 +25,9 @@ namespace TextEditor
                     break;
                 case 2:
                     ToEdit();
+                    break;
+                case 3:
+                    DeleteFile();
                     break;
                 case 0:
                     System.Environment.Exit(0);
@@ -82,6 +85,27 @@ namespace TextEditor
             }
 
             Console.WriteLine($"Arquivo {path} salvo com sucesso!");
+            Console.ReadLine();
+            Menu();
+        }
+
+        static void DeleteFile()
+        {
+            Console.Clear();
+            Console.WriteLine("Qual o caminho do arquivo que deseja excluir?");
+
+            string path = Console.ReadLine();
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+                Console.WriteLine($"Arquivo {path} deletado com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine($"Arquivo {path} não encontrado!");
+            }
+
             Console.ReadLine();
             Menu();
         }
